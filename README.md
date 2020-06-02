@@ -1,2 +1,0 @@
-# guccigang-bot-discord
-GucciBot
