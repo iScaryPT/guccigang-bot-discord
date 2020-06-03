@@ -1,0 +1,32 @@
+{
+  "name": "GucciBot",
+  "version": "1.0.0",
+  "description": "GucciBot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "discord.js": "^12.2.0",
+    "fs": "^0.0.2",
+    "ytdl-core": "^3.0.0",
+    "@discordjs/opus": "^0.3.2",
+    "discord-youtube-api": "^0.1.0",
+    "snekfetch": "^4.0.4",
+    "node-fetch": "^2.6.0",
+    "simple-youtube-api": "^5.2.1"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": ""
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
+}
