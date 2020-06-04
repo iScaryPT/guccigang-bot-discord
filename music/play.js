@@ -42,7 +42,9 @@ module.exports = {
     
         songsList.push({
             title: video.title,
-              url: `https://www.youtube.com/watch?v=${video.id}`,
+            url: `https://www.youtube.com/watch?v=${video.id}`,
+            duration: video.duration,
+            user: message.member.user.displayName,
         });
         
         // verifica se tem playlist -> list?=...
@@ -61,6 +63,8 @@ module.exports = {
             songsList.push({
             title: video.title,
               url: `https://www.youtube.com/watch?v=${video.id}`,
+              duration: video.duration,
+              user: message.member.user.displayName,
             });
           });
         }
@@ -81,6 +85,8 @@ module.exports = {
             songsList.push({
               title: video.title,
               url: `https://www.youtube.com/watch?v=${video.id}`,
+              duration: video.duration,
+              user: message.member.user.displayName,
             });
           });
         } else {
@@ -93,6 +99,8 @@ module.exports = {
           songsList.push({
               title: searchedVideo[0].title,
               url: `https://www.youtube.com/watch?v=${searchedVideo[0].id}`,
+              duration: searchedVideo[0].duration,
+              user: message.member.user.displayName,
           });
         
         }
@@ -130,7 +138,7 @@ module.exports = {
  
         var connection = await voiceChannel.join();
         queueContruct.connection = connection;  
-        musicData.play(message.guild, queueContruct.songs.shift());
+        musicData.play(message.guild, queueContruct.songs[0]);
         
         if(songsList.length-1)
           return message.channel.send(`${songsList.length-1} songs have been added to the queue!`);

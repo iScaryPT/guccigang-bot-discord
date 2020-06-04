@@ -8,6 +8,6 @@ module.exports = {
   aliases: '',
   guildOnly: true,
 	async execute(message, args) {
-    return musicData.skip(message) ? 0 : message.channel.send("Music skipped!");
+    return await musicData.skip(message) ? 0 : message.channel.send("**\:white_check_mark: Music skipped!**");
 	}
 };
