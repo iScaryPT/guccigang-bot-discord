@@ -12,6 +12,9 @@ module.exports.play = async function (guild, song) {
   }
   
   const dispatcher = serverQueue.connection.play(ytdl(song.url))
+ .on('start', () => {
+   serverQueue.textChannel.send(`**Playing** \:notes: \`${song.title}\` ** now! Requested by** \`${song.user}\``);
+ })
  .on('finish', () => {
   serverQueue.songs.shift();
   module.exports.play(guild, serverQueue.songs[0]);
@@ -61,9 +64,11 @@ module.exports.getSongsList = async function (message) {
   
   const serverQueue = module.exports.queue.get(message.guild.id);
     
-  if (!serverQueue)
-    return message.channel.send("**\:x: There is no playlist available!**");
-  
+
+  if (!serverQueue){
+    return [];
+  }
+
   return serverQueue.songs;
 
 }

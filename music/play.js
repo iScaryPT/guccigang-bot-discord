@@ -39,12 +39,14 @@ module.exports = {
         
         //se tiver ID adiciona o song correspondente a lista de sons
         const video = await youtube.getVideoByID(videoID);
-    
+        
+        
+        
         songsList.push({
             title: video.title,
             url: `https://www.youtube.com/watch?v=${video.id}`,
-            duration: video.duration,
-            user: message.member.user.displayName,
+            user: message.member.user.username,
+
         });
         
         // verifica se tem playlist -> list?=...
@@ -59,13 +61,21 @@ module.exports = {
           //remove o primeiro pois ja esta a tocar
           playlistVideos.shift();
           
+         // console.log(playlistVideos);
+          
+        
+          
           playlistVideos.forEach((video) => {
+         
+   
             songsList.push({
-            title: video.title,
+              title: video.title,
               url: `https://www.youtube.com/watch?v=${video.id}`,
-              duration: video.duration,
-              user: message.member.user.displayName,
+
+              user: message.member.user.username,
+
             });
+            
           });
         }
       
@@ -81,12 +91,13 @@ module.exports = {
         if(match){
           const playlist = await youtube.getPlaylistByID(match[1]);
           const playlistVideos = await playlist.getVideos();
-          playlistVideos.forEach((video) => {
+          playlistVideos.forEach( (video) => {
+
             songsList.push({
               title: video.title,
               url: `https://www.youtube.com/watch?v=${video.id}`,
-              duration: video.duration,
-              user: message.member.user.displayName,
+              user: message.member.user.username,
+
             });
           });
         } else {
@@ -99,8 +110,8 @@ module.exports = {
           songsList.push({
               title: searchedVideo[0].title,
               url: `https://www.youtube.com/watch?v=${searchedVideo[0].id}`,
-              duration: searchedVideo[0].duration,
-              user: message.member.user.displayName,
+              user: message.member.user.username,
+
           });
         
         }
