@@ -9,9 +9,9 @@ module.exports = {
 		
     const deleteCount = parseInt(args[0], 10);
     
-    if (!deleteCount || deleteCount < 1 || deleteCount > 99)
+    if (!deleteCount || deleteCount < 1 || deleteCount > 200)
       return message.reply(
-        "The number of messages must be between 1 and 99!"
+        "The number of messages must be between 1 and 20!"
       );
 
     const fetched = await message.channel.messages.fetch({ limit: deleteCount + 1 });

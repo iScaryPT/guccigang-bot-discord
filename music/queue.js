@@ -1,4 +1,6 @@
 const musicData = require('./data.js');
+const Discord = require('discord.js');
+
 
 module.exports = {
 	name: 'queue',
@@ -10,28 +12,56 @@ module.exports = {
 	async execute(message, args) {
     
     if(args.length > 1)
-      return message.channel.send("Wrong queue index!");
+      return message.channel.send("**\:x: Wrong queue page!**");
     
     var page = args[0] ? args[0] : 1;
+   
+    if(page <= 0)
+      return message.channel.send("**\:x: Wrong queue page!**");
+
+
     var list =  await musicData.getSongsList(message);
+    
+    if(!(list.length)) return message.channel.send("**\:x: There is no playlist available!**");
+    
 	  var res = '';
-    var availablePages = Math.ceil(list.length/20);
+    var availablePages = Math.ceil(list.length/10);
     
     if(page > availablePages)
-      return message.channel.send("Invalid queue page!")
+      return message.channel.send("**\:x: Invalid queue page!**");
     
-    for(let i = (page-1)*20; i < (page*20); i++){
+    res += "\n\n **Right Now:**\n"
+    res += `[${list[0].title}](${list[0].url}) | \`By: ${list[0].user}\``;
+    
+    res += list.length > 1 ? "\n\n **Up Next:**\n" : '\n\n';
+    
+    for(let i = (page-1)*10; i < (page*10); i++){
       if(i >= list.length)
         break;
-      res += list[i].title + "\n";
+      if(i == 0)
+        continue;
+      res += `\`${i}.\` [${list[i].title}](${list[i].url}) | \`By: ${list[i].user}\`\n\n`;
     }
-        
-    if(!res) res = 'Empty queue page' + "\n";
     
-    res += "\n" + `[Page ${page}\\${availablePages}]`;
-    res += availablePages > 1 ? "\n\n" + "If you want to access other pages type \`&queue <number_page>\`!" : '';
+    res += `**${list.length-1} songs enqueued!**`;
+  
     
-    message.channel.send(res);
+    
+
+      let footer = '';
+      footer += `Page ${page}\\${availablePages}`;
+      footer += availablePages > 1 ? "      If you want to access other pages type \`&queue <number_page>\`!" : '';
+
+      console.log(message.member);  
+    
+      const embed = new Discord.MessageEmbed()
+          .setColor('#0099ff')
+          .setTitle('GucciGang Music Queue')
+          .setDescription(res)
+          .setFooter(footer, message.member.user.displayAvatarURL());
+
+
+    message.channel.send(embed);
   }
   
 };

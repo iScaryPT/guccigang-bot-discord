@@ -8,6 +8,6 @@ module.exports = {
   aliases: '',
   guildOnly: true,
 	async execute(message, args) {
-    return musicData.stop(message) ? 0 : message.channel.send("Playlist deleted!");
+    return await musicData.stop(message) ? 0 : message.channel.send("**\:white_check_mark: Playlist deleted!**");
 	}
 };
