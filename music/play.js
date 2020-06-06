@@ -46,6 +46,7 @@ module.exports = {
             title: video.title,
             url: `https://www.youtube.com/watch?v=${video.id}`,
             user: message.member.user.username,
+
         });
         
         // verifica se tem playlist -> list?=...
@@ -70,7 +71,9 @@ module.exports = {
             songsList.push({
               title: video.title,
               url: `https://www.youtube.com/watch?v=${video.id}`,
+
               user: message.member.user.username,
+
             });
             
           });
@@ -94,6 +97,7 @@ module.exports = {
               title: video.title,
               url: `https://www.youtube.com/watch?v=${video.id}`,
               user: message.member.user.username,
+
             });
           });
         } else {
@@ -107,6 +111,7 @@ module.exports = {
               title: searchedVideo[0].title,
               url: `https://www.youtube.com/watch?v=${searchedVideo[0].id}`,
               user: message.member.user.username,
+
           });
         
         }

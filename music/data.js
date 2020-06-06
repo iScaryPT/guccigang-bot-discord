@@ -64,9 +64,11 @@ module.exports.getSongsList = async function (message) {
   
   const serverQueue = module.exports.queue.get(message.guild.id);
     
+
   if (!serverQueue){
     return [];
   }
+
   return serverQueue.songs;
 
 }

@@ -15,6 +15,7 @@ module.exports = {
       return message.channel.send("**\:x: Wrong queue page!**");
     
     var page = args[0] ? args[0] : 1;
+
    
     if(page <= 0)
       return message.channel.send("**\:x: Wrong queue page!**");
@@ -23,12 +24,13 @@ module.exports = {
     var list =  await musicData.getSongsList(message);
     
     if(!(list.length)) return message.channel.send("**\:x: There is no playlist available!**");
-    
+
 	  var res = '';
     var availablePages = Math.ceil(list.length/10);
     
     if(page > availablePages)
       return message.channel.send("**\:x: Invalid queue page!**");
+
     
     res += "\n\n **Right Now:**\n"
     res += `[${list[0].title}](${list[0].url}) | \`By: ${list[0].user}\``;
@@ -59,6 +61,7 @@ module.exports = {
           .setTitle('GucciGang Music Queue')
           .setDescription(res)
           .setFooter(footer, message.member.user.displayAvatarURL());
+
 
 
     message.channel.send(embed);
